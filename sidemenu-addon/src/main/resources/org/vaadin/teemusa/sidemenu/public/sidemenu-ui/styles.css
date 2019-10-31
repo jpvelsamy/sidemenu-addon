@@ -5,3 +5,7 @@ div.sidemenu-ui {
 	-moz-user-select: none;
 	-ms-user-select: none;
 }
+.v-image-side-menu-logo{
+	border-radius:100%;
+	text-align:center;
+}
