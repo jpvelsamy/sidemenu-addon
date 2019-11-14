@@ -221,7 +221,7 @@ public class SideMenu extends HorizontalLayout {
 	 */
 	public MenuRegistration addMenuItem(String text, Resource icon, final MenuClickHandler handler) {
 		Button button = new Button(text, event -> {
-			new ProgressWindow(text,"Please wait") {
+			new ProgressWindow(text,"Please wait, work in progress") {
 
 				@Override
 				public void lengthyOperation() throws Exception {
