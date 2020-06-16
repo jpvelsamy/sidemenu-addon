@@ -239,6 +239,28 @@ public class SideMenu extends HorizontalLayout {
 
 		return new MenuRegistrationImpl<>(button, Button::click, menuItemsLayout::removeComponent);
 	}
+	
+	public MenuRegistration addMenuItemDrawerClose(String text, Resource icon,final MenuClickHandler handler) {
+		Button button = new Button(text, event -> {
+			new ProgressWindow(text,"Please wait, work in progress") {
+
+				@Override
+				public void lengthyOperation() throws Exception {
+					// TODO Auto-generated method stub
+
+				}
+			};
+			handler.click();
+			menuArea.removeStyleName(STYLE_VISIBLE);
+			menuArea.setVisible(false);
+			//this.setVisible(false);
+		});
+		button.setIcon(icon);
+		button.setPrimaryStyleName("valo-menu-item");
+		menuItemsLayout.addComponent(button);
+
+		return new MenuRegistrationImpl<>(button, Button::click, menuItemsLayout::removeComponent);
+	}
 
 	/**
 	 * Add a root tree item to the menu. If it already exists, nothing happens and
@@ -441,6 +463,10 @@ public class SideMenu extends HorizontalLayout {
 		return addMenuItem(text, icon, () -> getUI().getNavigator().navigateTo(navigationState));
 	}
 
+	public MenuRegistration addNavigationDrawerClose(String text, Resource icon, final String navigationState) {
+		return addMenuItemDrawerClose(text, icon, () -> getUI().getNavigator().navigateTo(navigationState));
+	}
+	
 	/**
 	 * Removes all components from the content area.
 	 */
@@ -476,6 +502,16 @@ public class SideMenu extends HorizontalLayout {
 
 	public HorizontalLayout getLogoWrapper() {
 		return logoWrapper;
+	}
+	
+	public void showMenu()
+	{
+		this.menuArea.setVisible(true);
+	}
+	
+	public void hideMenu()
+	{
+		this.menuArea.setVisible(false);		
 	}
 
 }
